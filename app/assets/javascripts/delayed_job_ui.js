@@ -19,7 +19,8 @@ window.delayed_job_ui = (function($){
   }
 
   var tab_handlers = function() {
-    dj_obj.$parent.on('click', '.tab-title a', function(e){
+    dj_obj.$parent.on('click', '.link_to_tab', function(e){
+      e.preventDefault();
       $tab_link = $(e.target);
       set_active_tab($tab_link)
     })
@@ -27,9 +28,11 @@ window.delayed_job_ui = (function($){
 
   var set_active_tab = function($tab_link) {
     var content_id = $tab_link.attr('href');
-    var old_content_id = dj_obj.$parent.find(".tab-title.active a").attr('href');
-    dj_obj.$parent.find(".tab-title.active").removeClass('active');
-    $tab_link.parent().addClass('active');
+    var tab_selector = ".tab-title[href='" + content_id + "']";
+    var old_content_id = dj_obj.$parent.find(".tab-title.active").attr('href');
+    var $old_active = dj_obj.$parent.find(".tab-title.active").removeClass('active');
+    var $new_active = dj_obj.$parent.find(tab_selector);
+    $new_active.addClass('active');
     dj_obj.$parent.find(content_id).show();
     dj_obj.$parent.find(old_content_id).hide();
   }
@@ -39,7 +42,7 @@ window.delayed_job_ui = (function($){
   }
 
   var show_active_tab = function(){
-    var content_id = dj_obj.$parent.find(".tab-title.active a").attr('href');
+    var content_id = dj_obj.$parent.find(".tab-title.active").attr('href');
     dj_obj.$parent.find(content_id).show();
   }
 

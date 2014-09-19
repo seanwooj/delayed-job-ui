@@ -33,12 +33,12 @@
 
   .tabs {
     background: #eee;
-    .tab-title {
+    li {
       float: left;
       list-style: none;
       margin-bottom: 0;
 
-      a {
+      a.tab-title {
         position: relative;
         color: #A1A1A1;
         background: #F4F4F4;
@@ -50,14 +50,7 @@
         z-index: 10;
         top: 1px;
 
-        &:hover {
-          background: white;
-          text-decoration: none;
-        }
-      }
-
-      &.active {
-        a {
+        &.active {
           top: 1px;
           color: black;
           border-top: 5px solid #D65F75;
@@ -66,6 +59,11 @@
           border-right: none;
           box-shadow: 1px -2px 1px rgba(0,0,0,0.2);
           z-index: 999;
+        }
+
+        &:hover {
+          background: white;
+          text-decoration: none;
         }
       }
     }

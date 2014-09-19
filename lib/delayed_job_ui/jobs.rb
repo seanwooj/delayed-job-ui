@@ -15,5 +15,13 @@ module DelayedJobUi
         Delayed::Job.all
       end
     end
+
+    def self.job_count
+      count_hash = {:enqueued => 0, :working => 0, :pending => 0, :failed => 0}
+      count_hash.each do |type, number|
+        count_hash[type] = self.jobs(type).count
+      end
+      count_hash
+    end
   end
 end

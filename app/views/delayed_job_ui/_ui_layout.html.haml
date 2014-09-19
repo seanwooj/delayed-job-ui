@@ -3,21 +3,31 @@
 
 #delayed-job-ui
   %ul.tabs.cf
-    %li.tab-title.active
-      = link_to 'Overview', '#overview'
-    %li.tab-title
-      = link_to 'Enqueued', '#enqueued'
-    %li.tab-title
-      = link_to 'Working', '#working'
-    %li.tab-title
-      = link_to 'Pending', '#pending'
-    %li.tab-title
-      = link_to 'Failed', '#failed'
+    %li
+      = link_to 'Overview', '#overview', :class => 'tab-title link_to_tab active'
+    %li
+      = link_to 'Enqueued', '#enqueued', :class => 'tab-title link_to_tab'
+    %li
+      = link_to 'Working', '#working', :class => 'tab-title link_to_tab'
+    %li
+      = link_to 'Pending', '#pending', :class => 'tab-title link_to_tab'
+    %li
+      = link_to 'Failed', '#failed', :class => 'tab-title link_to_tab'
   .panel
     .content
       #overview.tab-content
         %h2 Overview
-        = render 'delayed_job_ui/job_table', :type => :all
+        %table
+          %thead
+            %tr
+              %th Type
+              %th Count
+          %tbody
+            - DelayedJobUi::Jobs.job_count.each do |type, count|
+              %tr
+                %td= link_to type.to_s.capitalize, "##{type}", :class => 'link_to_tab'
+                %td= count
+
       #enqueued.tab-content
         %h2 Enqueued
         = render 'delayed_job_ui/job_table', :type => :enqueued
