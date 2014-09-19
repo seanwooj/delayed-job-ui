@@ -6,7 +6,7 @@ module DelayedJobUi
     isolate_namespace DelayedJobUi
     config.to_prepare do
       ActionView::Base.send :include, MainHelper
-      Rails.application.config.assets.precompile += ['delayed_job_ui.css']
+      Rails.application.config.assets.precompile += %w{delayed_job_ui.css delayed_job_ui.js jquery.dataTables.js}
     end
   end
 end
