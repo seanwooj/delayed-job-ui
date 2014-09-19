@@ -1,4 +1,20 @@
 #delayed-job-ui {
+  * {
+    box-sizing: border-box;
+    &:before, &:after {
+      box-sizing: inherit;
+    }
+  }
+
+  .panel {
+    background: white;
+    border-top: 1px solid #E0E0E0;
+
+    .content {
+      margin-top: 20px;
+    }
+  }
+
   dl {
     dt {
       font-size: 80%;
@@ -11,6 +27,49 @@
     dd {
       margin-bottom: 10px;
       margin-left: 70px;
+    }
+  }
+
+  .tabs {
+
+    .tab-title {
+      float: left;
+      list-style: none;
+      margin-bottom: 0;
+
+      a {
+        position: relative;
+        top: 4px;
+        color: #A1A1A1;
+        background: #F4F4F4;
+        border-right: 1px solid #E0E0E0;
+        border-top: 1px solid #E0E0E0;
+        padding: 10px 40px;
+        display: block;
+
+        &:hover {
+          background: white;
+          text-decoration: none;
+        }
+      }
+
+      &.active {
+        a {
+          top: 1px;
+          color: black;
+          border-top: 5px solid #D65F75;
+          background: white;
+          border-bottom: none;
+        }
+      }
+    }
+  }
+
+  .cf {
+    &:before, &:after {
+      display: table;
+      content: '';
+      clear: both;
     }
   }
 }

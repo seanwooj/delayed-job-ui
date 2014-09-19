@@ -1,5 +1,18 @@
 = stylesheet_link_tag "style"
 #delayed-job-ui
-  - Delayed::Job.all.each do |job|
-    = render :partial => 'delayed_job_ui/job', :locals => {:job => job}
-    
+  %ul.tabs.cf
+    %li.tab-title.active
+      = link_to 'Overview', '#overview'
+    %li.tab-title
+      = link_to 'Enqueued', '#enqueued'
+    %li.tab-title
+      = link_to 'Working', '#working'
+    %li.tab-title
+      = link_to 'Pending', '#pending'
+    %li.tab-title
+      = link_to 'Failed', '#failed'
+  .panel
+    .content
+      - Delayed::Job.all.each do |job|
+        = render :partial => 'delayed_job_ui/job', :locals => {:job => job}
+        
