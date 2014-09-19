@@ -37,3 +37,13 @@
       %dt Failed At
       %dd
         = h job.failed_at
+
+  = form_tag delayed_job_ui.invoke_path, :method => :post, :class => 'inline-block' do
+    = hidden_field_tag :id, job.id
+    = hidden_field_tag :return_url, request.original_url
+    = submit_tag 'Run Job', :class => 'delayed_job_ui_button'
+
+  = form_tag delayed_job_ui.destroy_path, :method => :delete, :class => 'inline-block' do
+    = hidden_field_tag :id, job.id
+    = hidden_field_tag :return_url, request.original_url
+    = submit_tag 'Delete Job', :class => 'delayed_job_ui_button delete'

@@ -31,7 +31,6 @@
   }
 
   .tabs {
-
     .tab-title {
       float: left;
       list-style: none;
@@ -65,11 +64,43 @@
     }
   }
 
+  .delayed_job_ui_button {
+    padding: 15px 24px;
+    margin: 0;
+    line-height: 11px;
+    background: #1ABC9C;
+    border: none;
+    border-bottom: 2px solid rgba(0,0,0,0.1);
+    color: white;
+    border-radius: 3px;
+    font-size: 16px;
+    cursor: pointer;
+
+    &:hover {
+      background: #17A88C;
+    }
+
+    &.delete {
+      background: #D65F75;
+      &:hover {
+        background: #C05569
+      }
+    }
+  }
+
+  .delayed_job {
+    margin-bottom: 20px;
+  }
+
   .cf {
     &:before, &:after {
       display: table;
       content: '';
       clear: both;
     }
+  }
+
+  .inline-block {
+    display: inline-block;
   }
 }

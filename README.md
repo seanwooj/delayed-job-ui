@@ -5,7 +5,7 @@ My first attempt at a gem. A small and simple (and hopefully unintrusive) UI wra
 To get the routes properly set up, insert this into your routes.rb file.
 ```ruby
 unless Rails.env.production?
-  mount DelayedJobUI::Engine => '/delayed_job_ui'
+  mount DelayedJobUi::Engine => '/delayed_job_ui'
 end
 ```
 
