@@ -18,5 +18,6 @@ Gem::Specification.new do |s|
   s.license = 'MIT'
 
   s.add_dependency 'delayed_job_active_record'
+  s.add_dependency 'jquery-rails'
   s.add_dependency "railties", '>= 3.1', '< 5.0'
 end

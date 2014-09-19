@@ -1,4 +1,9 @@
 = stylesheet_link_tag "style"
+= javascript_include_tag "//cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"
+:javascript
+  $(document).ready(function(){
+    $('#job_table').DataTable();
+  });
 #delayed-job-ui
   %ul.tabs.cf
     %li.tab-title.active
@@ -13,6 +18,30 @@
       = link_to 'Failed', '#failed'
   .panel
     .content
-      - Delayed::Job.all.each do |job|
-        = render :partial => 'delayed_job_ui/job', :locals => {:job => job}
-        
+      #overview
+        %h2 Overview
+        %table#job_table.clean
+          %thead
+            %th Job ID
+            %th Object Class
+            %th Object ID
+            %th Method
+            %th Priority
+            %th Attempts
+            %th Run At
+            %th Last Error
+            %th Locked At
+            %th Locked By
+            %th Failed At
+            %th Actions
+          %tbody
+            - Delayed::Job.all.each do |job|
+              = render :partial => 'delayed_job_ui/job', :locals => {:job => job}
+      #enqueued
+        %h2 Enqueued
+      #working
+        %h2 Working
+      #pending
+        %h2 Pending
+      #failed
+        %h2 Failed
