@@ -1,7 +1,8 @@
 module DelayedJobUI
   class MainController < ::ApplicationController
     def invoke
-
+      @job = Delayed::Job.find(params[:id])
+      if @job.invoke_job
     end
 
     def destroy
@@ -13,6 +14,6 @@ module DelayedJobUI
         format.json
       end
     end
-    
+
   end
 end

@@ -1,3 +1,5 @@
-%div
-  teaoitjasoidjtoasidjgo
-  %h4 adoigjoaisdgjoi
+= stylesheet_link_tag "style"
+#delayed-job-ui
+  - Delayed::Job.all.each do |job|
+    = render :partial => 'delayed_job_ui/job', :locals => {:job => job}
+    

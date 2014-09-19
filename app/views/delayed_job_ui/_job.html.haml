@@ -1,0 +1,39 @@
+- handler = YAML.load(job.handler)
+- object = handler.instance_variable_get(:@object)
+- args = handler.instance_variable_get(:@args)
+- method_name = handler.instance_variable_get(:@method_name)
+
+.delayed_job
+  %dl
+    %dt ID
+    %dd= job.id
+    %dt Priority
+    %dd= job.priority
+    %dt Attempts
+    %dd= job.attempts
+    %dt Handler
+    %dd
+      %pre= h job.handler
+    - if job.run_at
+      %dt Run At
+      %dd= "#{job.run_at.strftime("%D %T %Z")}  (Approximately #{distance_of_time_in_words(Time.now, job.run_at)} from now)"
+    - if job.last_error
+      %dt Last Error
+      %dd
+        .backtrace
+          %pre= h job.last_error[0..100] + '...'
+        %a.backtrace{:href => "#"} Toggle full message
+        .backtrace.full.hide
+          %pre= h job.last_error
+    - if job.locked_at
+      %dt Locked At
+      %dd.time
+        = h job.locked_at.rfc822
+    - if job.locked_by
+      %dt Locked By
+      %dd
+        = h job.locked_by
+    - if job.failed_at
+      %dt Failed At
+      %dd
+        = h job.failed_at
