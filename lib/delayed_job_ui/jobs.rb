@@ -1,22 +1,18 @@
 module DelayedJobUi
-  module MainHelper
-    def delayed_job_ui_layout
-      render :partial => 'delayed_job_ui/ui_layout'
-    end
-
-    def jobs(type, model)
+  class Jobs
+    def self.jobs(type)
       case type
       when :working
         query = "locked_at IS NOT NULL"
       when :failed
         query = "last_error IS NOT NULL"
       when :pending
-        query "attempts = 0 AND locked_at IS NULL"
+        query = "attempts = 0 AND locked_at IS NULL"
       end
       if defined? query
-        model.where(query)
+        Delayed::Job.where(query)
       else
-        model.all
+        Delayed::Job.all
       end
     end
   end

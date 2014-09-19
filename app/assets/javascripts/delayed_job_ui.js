@@ -1,11 +1,6 @@
 //= require jquery
 //= require jquery.dataTables
 
-$(document).ready(function(){
-  $('#job_table').DataTable();
-  $(window.delayed_job_ui.initialize);
-});
-
 window.delayed_job_ui = (function($){
   var dj_obj = {};
   var namespace = ("#delayed-job-ui");
@@ -13,9 +8,14 @@ window.delayed_job_ui = (function($){
 
   dj_obj.initialize = function(){
     dj_obj.$parent = $(namespace);
+    instantiate_datatable();
     tab_handlers();
     hide_tab_content();
     show_active_tab();
+  }
+
+  var instantiate_datatable = function(){
+    dj_obj.$parent.find('.job_table').DataTable();
   }
 
   var tab_handlers = function() {
@@ -45,3 +45,5 @@ window.delayed_job_ui = (function($){
 
   return dj_obj
 })(jQuery);
+
+$(window.delayed_job_ui.initialize);
