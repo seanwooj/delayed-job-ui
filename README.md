@@ -4,14 +4,14 @@ My first attempt at a gem. A small and simple (and hopefully unintrusive) UI wra
 
 To get the routes properly set up, insert this into your routes.rb file.
 ```ruby
-unless Rails.env.production?
+unless Rails.env.production? || Rails.env.test?
   mount DelayedJobUi::Engine => '/delayed_job_ui'
 end
 ```
 
 To drop in the UI element, insert the following at the bottom of your application's layout file.
 ```erb
-<% unless Rails.env.production? #prevent this view in production %>
+<% unless Rails.env.production? || Rails.env.test? #prevent this view in production and test %>
   <%= delayed_job_ui_layout %>
 <% end %>
 ```
