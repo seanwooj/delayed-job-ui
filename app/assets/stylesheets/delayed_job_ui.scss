@@ -1,4 +1,8 @@
 #delayed-job-ui {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 100;
   * {
     box-sizing: border-box;
     &:before, &:after {
@@ -6,10 +10,54 @@
     }
   }
 
+  .minimized {
+    display: none;
+  }
+
+  .maximized {
+    position: relative;
+    .close {
+      position: absolute;
+      right: 12px;
+      top: 12px;
+      background: white;
+      padding: 1px 6px;
+      color: black;
+      border: 1px solid #C7C7C7;
+      &:hover {
+        text-decoration: none;
+        background: #ccc;
+      }
+    }
+  }
+
+  &.closed {
+    width: inherit;
+    .maximized {
+      display: none;
+    }
+    .minimized {
+      display: block;
+      .open {
+        display: block;
+        padding: 10px;
+        top: 1px;
+        color: black;
+        border-top: 5px solid #D65F75;
+        background: white;
+        border-bottom: none;
+        border-right: none;
+        box-shadow: 1px -2px 1px rgba(0,0,0,0.2);
+        z-index: 999;
+      }
+    }
+  }
+
   .panel {
     border-radius: 0;
     background: white;
     box-shadow: 0px 0px 1px rgba(0,0,0,0.2);
+    margin-bottom: 0;
 
     .content {
       margin-top: 20px;

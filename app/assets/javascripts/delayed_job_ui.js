@@ -10,6 +10,7 @@ window.delayed_job_ui = (function($){
     dj_obj.$parent = $(namespace);
     instantiate_datatable();
     tab_handlers();
+    resize_handlers();
     hide_tab_content();
     show_active_tab();
   }
@@ -18,12 +19,24 @@ window.delayed_job_ui = (function($){
     dj_obj.$parent.find('.job_table').DataTable();
   }
 
+  var resize_handlers = function() {
+    dj_obj.$parent.on('click', '.open', function(e){
+      e.preventDefault();
+      dj_obj.$parent.removeClass('closed');;
+    });
+
+    dj_obj.$parent.on('click', '.close', function(e){
+      e.preventDefault();
+      dj_obj.$parent.addClass('closed');;
+    });
+  }
+
   var tab_handlers = function() {
     dj_obj.$parent.on('click', '.link_to_tab', function(e){
       e.preventDefault();
       $tab_link = $(e.target);
       set_active_tab($tab_link)
-    })
+    });
   }
 
   var set_active_tab = function($tab_link) {

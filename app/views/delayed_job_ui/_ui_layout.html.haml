@@ -1,42 +1,46 @@
 = stylesheet_link_tag "delayed_job_ui"
 = javascript_include_tag 'delayed_job_ui'
 
-#delayed-job-ui
-  %ul.tabs.cf
-    %li
-      = link_to 'Overview', '#overview', :class => 'tab-title link_to_tab active'
-    %li
-      = link_to 'Enqueued', '#enqueued', :class => 'tab-title link_to_tab'
-    %li
-      = link_to 'Working', '#working', :class => 'tab-title link_to_tab'
-    %li
-      = link_to 'Pending', '#pending', :class => 'tab-title link_to_tab'
-    %li
-      = link_to 'Failed', '#failed', :class => 'tab-title link_to_tab'
-  .panel
-    .content
-      #overview.tab-content
-        %h2 Overview
-        %table
-          %thead
-            %tr
-              %th Type
-              %th Count
-          %tbody
-            - DelayedJobUi::Jobs.job_count.each do |type, count|
+#delayed-job-ui.closed
+  .minimized
+    =link_to 'Open Delayed Job UI', '#', :class => 'open'
+  .maximized
+    =link_to 'X', '#', :class => 'close'
+    %ul.tabs.cf
+      %li
+        = link_to 'Overview', '#overview', :class => 'tab-title link_to_tab active'
+      %li
+        = link_to 'Enqueued', '#enqueued', :class => 'tab-title link_to_tab'
+      %li
+        = link_to 'Working', '#working', :class => 'tab-title link_to_tab'
+      %li
+        = link_to 'Pending', '#pending', :class => 'tab-title link_to_tab'
+      %li
+        = link_to 'Failed', '#failed', :class => 'tab-title link_to_tab'
+    .panel
+      .content
+        #overview.tab-content
+          %h2 Overview
+          %table
+            %thead
               %tr
-                %td= link_to type.to_s.capitalize, "##{type}", :class => 'link_to_tab'
-                %td= count
+                %th Type
+                %th Count
+            %tbody
+              - DelayedJobUi::Jobs.job_count.each do |type, count|
+                %tr
+                  %td= link_to type.to_s.capitalize, "##{type}", :class => 'link_to_tab'
+                  %td= count
 
-      #enqueued.tab-content
-        %h2 Enqueued
-        = render 'delayed_job_ui/job_table', :type => :enqueued
-      #working.tab-content
-        %h2 Working
-        = render 'delayed_job_ui/job_table', :type => :working
-      #pending.tab-content
-        %h2 Pending
-        = render 'delayed_job_ui/job_table', :type => :pending
-      #failed.tab-content
-        %h2 Failed
-        = render 'delayed_job_ui/job_table', :type => :failed
+        #enqueued.tab-content
+          %h2 Enqueued
+          = render 'delayed_job_ui/job_table', :type => :enqueued
+        #working.tab-content
+          %h2 Working
+          = render 'delayed_job_ui/job_table', :type => :working
+        #pending.tab-content
+          %h2 Pending
+          = render 'delayed_job_ui/job_table', :type => :pending
+        #failed.tab-content
+          %h2 Failed
+          = render 'delayed_job_ui/job_table', :type => :failed
