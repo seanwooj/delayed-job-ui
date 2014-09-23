@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'delayed_job_ui'
-  s.version = '0.0.1'
+  s.version = '0.0.2'
   s.date = '2014-09-18'
   s.summary = 'A UI wrapper for DelayedJob'
   s.description = s.summary
@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.files = [
     "Gemfile",
     "delayed_job_ui.gemspec",
-  ] + %x{ git ls-files }.split("\n").select { |d| d =~ %r{^(lib|test|app)} }
+  ] + %x{ git ls-files }.split("\n").select { |d| d =~ %r{^(lib|app|config)} }
   s.extra_rdoc_files = [
     "LICENSE.txt",
     "README.md"
