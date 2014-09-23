@@ -1,4 +1,3 @@
-//= require jquery
 //= require jquery.dataTables
 
 window.delayed_job_ui = (function($){

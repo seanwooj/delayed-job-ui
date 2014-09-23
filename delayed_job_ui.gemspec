@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = 'delayed_job_ui'
-  s.version = '0.0.2'
+  s.version = '0.0.3'
   s.date = '2014-09-18'
   s.summary = 'A UI wrapper for DelayedJob'
   s.description = s.summary
